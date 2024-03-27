@@ -1,0 +1,16 @@
+{% extends 'budget/base.html' %}
+{% block content %}
+<div class="container">
+    <form action="" method="POST">
+        {% csrf_token %}    
+        <div class="container mt-4">
+        {{ form }}
+
+      
+      
+        <button type="submit" class="btn btn-primary">Start Project </button>
+    </form>
+</div>
+
+
+{% endblock %}
