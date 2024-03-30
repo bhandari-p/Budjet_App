@@ -57,7 +57,7 @@
                                 <span class="title">{{expense.category.name}}</span>
                             </div>
                             <div class="col">
-                                <a href="">
+                                <a href="delete">
                                     <i class="bi bi-file-excel btn-outline-danger "></i> </a>
                             </div>
                         </div>
@@ -86,22 +86,11 @@
                 <div class="modal-body">
                     <form action="" method="post">
                                  {% csrf_token %}
-                                <!-- {{ form }} -->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="title">Title</span>
-                                    <input type="text" class="form-control"  aria-describedby="basic-addon1">
-                                  </div>
-                                  <div class="input-group mb-3">
-                                    <span class="input-group-text" id="amount">Amount</span>
-                                    <input type="text" class="form-control"  aria-describedby="basic-addon1">
-                                  </div>
-                                  <div class="input-group mb-3">
-                                    <span class="input-group-text" id="category">Category</span>
-                                    <input type="text" class="form-control"  aria-describedby="basic-addon1">
-                                  </div>
-
+                                 {% for field in form %}
+                                {{field}}
+                                 {% endfor %}
+                                 
                         <button type="submit" class="btn btn-primary">Add</button>
-
                     </form>
                 </div>
             </div>

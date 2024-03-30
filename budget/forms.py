@@ -1,7 +1,8 @@
 from django import forms
 from .models import Expense
+from django.forms import ModelForm
 
-class ExpenseForm(forms.Form):
+class ExpenseForm(ModelForm):
    class Meta:
       model=Expense
       fields=['title','amount','category']

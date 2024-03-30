@@ -13,23 +13,24 @@ def project_list(request):
 def project_detail(request,project_slug):
     project=get_object_or_404(Project,slug=project_slug)
     expense_list=project.expenses.all()
+    project_list=Project.objects.all()
+    form = ExpenseForm(request.POST or None)
 
     if request.method=='GET':
-        return render(request,'budget/project-detail.html',{'project':project,'expense_list':expense_list })
+        return render(request,'budget/project-detail.html',{'project':project,'expense_list':expense_list, 'form':form,'project_list':project_list})
 
 
     if request.method=='POST':
-        form=ExpenseForm(request.POST)
         if form.is_valid():
-            title=form.cleaned_data['title']
-            amount=form.cleaned_data['amount']
-            category=form.cleaned_data['category']
-            project.expenses.objects.create(
-                project=project,
-                title=title,
-                amount=amount,
-                category=category
-            ).save()  
+            print(form.cleaned_data)
+            title=form.cleaned_data.get("title")
+            amount=form.cleaned_data.get("amount")
+            category=form.cleaned_data.get("category")
+            project.expenses.create(
+                title = title,
+                amount = amount,
+                category = category
+            )
     return HttpResponseRedirect(project_slug)
 
 
