@@ -8,7 +8,7 @@ from .forms import *
 
 def project_list(request):
     project_list=Project.objects.all()
-    return render(request,'budget/project-list.html',{'project_list':project_list})
+    return render(request,'budget/project_list.html',{'project_list':project_list})
 
 def project_detail(request,project_slug):
     project=get_object_or_404(Project,slug=project_slug)
@@ -17,7 +17,7 @@ def project_detail(request,project_slug):
     form = ExpenseForm(request.POST or None)
 
     if request.method=='GET':
-        return render(request,'budget/project-detail.html',{'project':project,'expense_list':expense_list, 'form':form,'project_list':project_list})
+        return render(request,'budget/project_detail.html',{'project':project,'expense_list':expense_list, 'form':form,'project_list':project_list})
 
 
     if request.method=='POST':
@@ -45,7 +45,7 @@ def remove_expense(request,id):
 
 class ProjectCreateView(CreateView):
     model=Project
-    template_name='budget/add-project.html'
+    template_name='budget/project_add.html'
     fields=('name','budget')
 
 
